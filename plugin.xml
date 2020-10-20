@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.chinamobile.cache.caches" version="1.4.7" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>caches</name>
+    <js-module name="caches" src="www/caches.js">
+        <clobbers target="cordova.plugins.caches" />
+    </js-module>
+	<platform name="android">
+        <!-- 缓存插件 -->
+        <config-file target="app/src/main/res/xml/config.xml" parent="/*">
+            <feature name="Caches">
+                <param name="android-package" value="com.chinamobile.cache.Caches"/>
+            </feature>
+        </config-file>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Caches">
+                <param name="android-package" value="com.chinamobile.cache.Caches"/>
+            </feature>
+        </config-file>
+
+        <!-- 权限 -->
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+        </config-file>
+
+        <!-- 项目文件 -->
+        <source-file src="src/android/Caches.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CachesSP.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/ACache.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CacheThreadFactorys.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CacheThreadProxy.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CacheUtil.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CsvUtil.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CacheFile.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/CacheApplicationUtil.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/FileProvider.java"  target-dir="src/com/chinamobile/cache"/>
+
+        <source-file src="src/android/Mail.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/MailSender.java"  target-dir="src/com/chinamobile/cache"/>
+        <source-file src="src/android/MailType.java"  target-dir="src/com/chinamobile/cache"/>
+
+        <!-- 项目jar包 -->
+        <source-file src="src/android/activation.jar" target-dir="app/libs"/>
+        <source-file src="src/android/additionnal.jar" target-dir="app/libs"/>
+        <source-file src="src/android/commons-codec-1.9.jar" target-dir="app/libs"/>
+        <source-file src="src/android/commons-csv-1.1.jar" target-dir="app/libs"/>
+        <source-file src="src/android/commons-io-2.4.jar" target-dir="app/libs"/>
+        <source-file src="src/android/json-org.jar" target-dir="app/libs"/>
+        <source-file src="src/android/mail.jar" target-dir="app/libs"/>
+
+        <!-- hooks -->
+        <hook type="after_platform_add" src="hooks/caches_after_platform.js" />
+  </platform>
+    
+  <platform name="ios">
+		<!-- 缓存插件 -->
+		<config-file target="config.xml" parent="/*">
+				<feature name="Caches">
+						<param name="ios-package" value="Caches" />
+				</feature>
+		</config-file>
+
+		<!-- 项目文件 -->
+        <header-file src="src/ios/Caches.h" />
+        <source-file src="src/ios/Caches.m" />
+		<header-file src="src/ios/NSCSVUtil.h" />
+        <source-file src="src/ios/NSCSVUtil.m" />
+
+        <header-file src="src/ios/Base64Transcoder.h" />
+        <source-file src="src/ios/Base64Transcoder.m" />
+        <header-file src="src/ios/HSK_CFUtilities.h" />
+        <source-file src="src/ios/HSK_CFUtilities.m" />
+        <header-file src="src/ios/NSCSVUtil.h" />
+        <source-file src="src/ios/NSCSVUtil.m" />
+        <header-file src="src/ios/NSData+Base64Additions.h" />
+        <source-file src="src/ios/NSData+Base64Additions.m" />
+        <header-file src="src/ios/NSStream+SKPSMTPExtensions.h" />
+        <source-file src="src/ios/NSStream+SKPSMTPExtensions.m" />
+        <header-file src="src/ios/SKPSMTPMessage.h" />
+        <source-file src="src/ios/SKPSMTPMessage.m" />
+
+        <framework src="src/ios/MessageUI.framework" custom="true" />
+        <framework src="libsqlite3.tbd" weak="true" />
+  </platform>
+</plugin>
